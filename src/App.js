@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./components/Navbar";
+import ProjectBoard from "./components/ProjectBoard";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import AddProjectTask from "./components/ProjectTask/AddProjectTask";
+import { Provider } from "react-redux";
+import store from "./store";
+import UpdateProjectTask from "./components/ProjectTask/UpdateProjectTask";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Route exact path="/" component={ProjectBoard} />
+
+            <Route exact path="/addProjectTask" component={AddProjectTask} />
+            <Route
+              exact
+              path="/updateProjectTask/:pt_id"
+              component={UpdateProjectTask}
+            />
+          </div>
+        </Router>
+      </Provider>
+    );
+  }
 }
 
 export default App;
