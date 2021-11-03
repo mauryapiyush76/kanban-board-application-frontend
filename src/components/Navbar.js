@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
       <div className="container">
         <a className="navbar-brand" href="/">
-          Project Task Tool
+          Kanban Project Board
         </a>
         <button
           className="navbar-toggler"

@@ -17,7 +17,7 @@ class ProjectBoard extends Component {
     let inProgressItems = [];
     let doneItems = [];
 
-    const BoardAlgorithm = project_tasks => {
+    const BoardAlgorithm = (project_tasks) => {
       if (project_tasks.length < 1) {
         return (
           <div className="alert alert-info text-center" role="alert">
@@ -25,7 +25,7 @@ class ProjectBoard extends Component {
           </div>
         );
       } else {
-        const tasks = project_tasks.map(project_task => (
+        const tasks = project_tasks.map((project_task) => (
           <ProjectTaskItem key={project_task.id} project_task={project_task} />
         ));
 
@@ -50,7 +50,9 @@ class ProjectBoard extends Component {
                 <div className="col-md-4">
                   <div className="card text-center mb-2">
                     <div className="card-header bg-secondary text-white">
-                      <h3>TO DO</h3>
+                      <i className="fa fa-list-ul" aria-hidden="true">
+                        <h3 className="">TO DO</h3>
+                      </i>
                     </div>
                   </div>
 
@@ -59,7 +61,9 @@ class ProjectBoard extends Component {
                 <div className="col-md-4">
                   <div className="card text-center mb-2">
                     <div className="card-header bg-primary text-white">
-                      <h3>In Progress</h3>
+                      <i className="fa fa-spinner" aria-hidden="true">
+                        <h3>In Progress</h3>
+                      </i>
                     </div>
                   </div>
 
@@ -68,7 +72,9 @@ class ProjectBoard extends Component {
                 <div className="col-md-4">
                   <div className="card text-center mb-2">
                     <div className="card-header bg-success text-white">
-                      <h3>Done</h3>
+                      <i className="fa fa-check-circle" aria-hidden="true">
+                        <h3>Done</h3>
+                      </i>
                     </div>
                   </div>
 
@@ -98,14 +104,11 @@ class ProjectBoard extends Component {
 
 ProjectBoard.propTypes = {
   getBacklog: PropTypes.func.isRequired,
-  project_tasks: PropTypes.object.isRequired
+  project_tasks: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  project_tasks: state.project_task
+const mapStateToProps = (state) => ({
+  project_tasks: state.project_task,
 });
 
-export default connect(
-  mapStateToProps,
-  { getBacklog }
-)(ProjectBoard);
+export default connect(mapStateToProps, { getBacklog })(ProjectBoard);
